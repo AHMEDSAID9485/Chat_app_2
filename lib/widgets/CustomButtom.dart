@@ -18,7 +18,7 @@ final String text;
         borderRadius: BorderRadius.circular(12),
         color: AppColor.sco_color
       ),
-      child: Text(text,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,)),
+      child: Text(text,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,)),
     );
   }
 }
