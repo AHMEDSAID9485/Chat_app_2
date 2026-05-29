@@ -31,7 +31,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 5,),
                 Custom_Text_field_widget(text: 'Email',),
                 SizedBox(height: 5,),
-                Custom_Text_field_widget(text: 'password',),
+                Custom_Text_field_widget(text: 'password',isPassword: true,),
                 SizedBox(height: 10,),
                 CustomButtom(text: 'Sign In',),
                 SizedBox(height: 10,),
