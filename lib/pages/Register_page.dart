@@ -75,21 +75,33 @@ class RegisterPage extends StatelessWidget {
                   CustomButtom(
                     text: 'Register',
                     onTap: () async {
-                     if (formKey.currentState!.validate()) {
-                       try {
-                         await Register_method(emailController.text, passwordController.text);
-                         
-                       } on FirebaseAuthException catch (e) {
-                         if (e.code == 'weak-password') {
-                           show_snackbar(context,'The password provided is too weak.');
-                         } else if (e.code == 'email-already-in-use') {
-                           show_snackbar(context,'The account already exists for that email.');
-                         }
-                       } catch (e) {
-                         show_snackbar(context,'Registration failed: ${e.toString()}');
-                       }
-                       show_snackbar(context,'Registration successful!');
-                     }}
+                if (formKey.currentState!.validate()) {
+  try {
+    // 1. محاولة إنشاء الحساب
+    await Register_method(emailController.text, passwordController.text);
+    
+    // 2. رسالة النجاح 
+    show_snackbar(context, 'Registration successful!');
+    
+    // يمكنك إضافة كود الانتقال للصفحة الرئيسية هنا
+    
+  } on FirebaseAuthException catch (e) {
+    // 3. التقاط أخطاء فايربيز الخاصة بالتسجيل
+    if (e.code == 'weak-password') {
+      show_snackbar(context, 'The password provided is too weak.', isError: true);
+    } 
+    else if (e.code == 'email-already-in-use') {
+      show_snackbar(context, 'The account already exists for that email.', isError: true);
+    } 
+    else {
+      // لالتقاط أي خطأ آخر من فايربيز
+      show_snackbar(context, 'Error: ${e.message}', isError: true);
+    }
+  } catch (e) {
+    // 4. التقاط الأخطاء العامة غير المتوقعة
+    show_snackbar(context, 'Registration failed: ${e.toString()}', isError: true);
+  }
+}}
                   ),
                   SizedBox(height: 10),
                   Row(
