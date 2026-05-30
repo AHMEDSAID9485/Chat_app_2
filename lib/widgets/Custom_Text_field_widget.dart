@@ -46,12 +46,14 @@ class Custom_Text_field_widget extends StatefulWidget {
   const Custom_Text_field_widget({
     super.key,
     required this.text,
-    this.isPassword = false, // ضفنا المتغير ده عشان نحدد لو ده حقل باسورد ولا لأ
+    this.isPassword = false, this.controller, this.keyboardType, this.validator, this.autofillHints, // ضفنا المتغير ده عشان نحدد لو ده حقل باسورد ولا لأ
   });
-
+final TextEditingController? controller; // ضفنا الكنترولر عشان نقدر نستخدمه في تسجيل الدخول والتسجيل
   final String text;
   final bool isPassword;
-
+final TextInputType? keyboardType;
+final String? Function(String?)? validator; // ضفنا الفاليديتر عشان نقدر نستخدمه في تسجيل الدخول والتسجيل
+  final Iterable<String>? autofillHints;
   @override
   State<Custom_Text_field_widget> createState() => _Custom_Text_field_widgetState();
 }
@@ -69,6 +71,10 @@ class _Custom_Text_field_widgetState extends State<Custom_Text_field_widget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofillHints: widget.autofillHints,
+      keyboardType: widget.keyboardType,
+      controller: widget.controller,
+      validator: widget.validator,
       style: TextStyle(
         color: AppColor.sco_color
       ),

@@ -5,20 +5,26 @@ import 'package:flutter/material.dart';
 class CustomButtom extends StatelessWidget {
   const CustomButtom({
     super.key,
-    required this.text
+    required this.text,
+    this.onTap
   });
 final String text;
+final void Function()? onTap;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      height: 45,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: AppColor.sco_color
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.center,
+        height: 45,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: AppColor.sco_color
+        ),
+        child: Text(text,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,)),
       ),
-      child: Text(text,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,)),
     );
   }
 }
