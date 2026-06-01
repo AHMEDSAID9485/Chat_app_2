@@ -29,7 +29,6 @@ void show_snackbar(BuildContext context, String text, {bool isError = false}) {
 
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      // محتوى السناك بار (أيقونة + نص)
       content: Row(
         children: [
           Icon(
