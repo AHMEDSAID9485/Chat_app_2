@@ -1,6 +1,7 @@
 import 'package:chatapp2/Method/method.dart';
 import 'package:chatapp2/const/App_color.dart';
 import 'package:chatapp2/pages/Register_page.dart';
+import 'package:chatapp2/pages/chat_page.dart';
 import 'package:chatapp2/widgets/CustomButtom.dart';
 import 'package:chatapp2/widgets/Custom_Text_field_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -100,9 +101,12 @@ class _LoginPageState extends State<LoginPage> {
                               emailController.text,
                               passwordController.text,
                             );
-
-                            // رسالة النجاح داخل الـ try
-                            show_snackbar(context, 'Login successful!');
+                              Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChatPage(),
+                              ),
+                            );
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
                               show_snackbar(

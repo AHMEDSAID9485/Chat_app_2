@@ -1,6 +1,7 @@
 import 'package:chatapp2/Method/method.dart';
 import 'package:chatapp2/const/App_color.dart';
 import 'package:chatapp2/pages/Login_page.dart';
+import 'package:chatapp2/pages/chat_page.dart';
 import 'package:chatapp2/widgets/CustomButtom.dart';
 import 'package:chatapp2/widgets/Custom_Text_field_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -101,11 +102,12 @@ class _RegisterPageState extends State<RegisterPage> {
                               emailController.text,
                               passwordController.text,
                             );
-
-                            // 2. رسالة النجاح
-                            show_snackbar(context, 'Registration successful!');
-
-                            // يمكنك إضافة كود الانتقال للصفحة الرئيسية هنا
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChatPage(),
+                              ),
+                            );
                           } on FirebaseAuthException catch (e) {
                             // 3. التقاط أخطاء فايربيز الخاصة بالتسجيل
                             if (e.code == 'weak-password') {
